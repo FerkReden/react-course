@@ -1,9 +1,11 @@
 import './App.css';
+import { Characters } from './components/Characters';
 
 function App() {
+
   return (
-    <div className="App">
-      <h1>Hello 1111</h1>
+    <div>
+      <Characters />
     </div>
   );
 }
