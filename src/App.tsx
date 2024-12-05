@@ -1,9 +1,10 @@
 import './App.css';
+import { PostsContainer } from './components/PostContainer/PostsContainer';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Hello</h1>
+    <div>
+      <PostsContainer />
     </div>
   );
 }
