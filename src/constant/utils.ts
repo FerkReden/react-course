@@ -1,12 +1,11 @@
-const baseURL = 'https://jsonplaceholder.typicode.com/';
+const baseURL = 'http://owu.linkpc.net/carsAPI/v1'
 
-const posts = '/posts'
-
+const cars = '/cars'
 const urls = {
-    posts: {
-        base: posts,
+    cars: {
+        base: cars,
         //@ts-ignore
-        byId: (id) => `${posts}/${id}`,
+        byId: (id) => `${cars}/${id}`
     }
 }
 

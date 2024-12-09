@@ -1,10 +1,10 @@
 import './App.css';
-import { PostsContainer } from './components/PostContainer/PostsContainer';
+import { CarContainer } from './components/CarContainer/CarContainer';
 
 function App() {
   return (
     <div>
-      <PostsContainer />
+      <CarContainer />
     </div>
   );
 }
