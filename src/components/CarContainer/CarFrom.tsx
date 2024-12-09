@@ -1,11 +1,19 @@
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { FC, useEffect } from "react";
+
 import { carService } from "../../services/carService";
-import { useEffect } from "react";
+import { ICar } from "../../interfaces/carInterface";
+import { ISetState } from "../../types/setStateType";
 
-//@ts-ignore
-const CarFrom = ({changeTrigger, carForUpdate, setCarForUpdate}) => {
+interface IProps {
+    changeTrigger: () => void;
+    setCarForUpdate: ISetState<ICar>,
+    carForUpdate: ICar,
+}
 
-    const { register, reset, handleSubmit, formState: { isValid, errors }, setValue } = useForm({
+const CarFrom: FC<IProps> = ({changeTrigger, carForUpdate, setCarForUpdate}) => {
+
+    const { register, reset, handleSubmit, formState: { isValid, errors }, setValue } = useForm<ICar>({
         mode: 'all'
     });
 
@@ -17,19 +25,14 @@ const CarFrom = ({changeTrigger, carForUpdate, setCarForUpdate}) => {
         }
     }, [carForUpdate, setValue]);
 
-    //@ts-ignore
-    const save = async (car) => {
+    const save: SubmitHandler<ICar> = async (car) => {
         await carService.create(car)
-        //@ts-ignore
         changeTrigger()
         reset()
     }
 
-    //@ts-ignore
-    const update = async (car) => {
-        //@ts-ignore
+    const update: SubmitHandler<ICar> = async (car) => {
         await carService.updateById(carForUpdate.id, car)
-        //@ts-ignore
         changeTrigger()
         setCarForUpdate(null)
         reset()
@@ -67,15 +70,9 @@ const CarFrom = ({changeTrigger, carForUpdate, setCarForUpdate}) => {
                     },
                     })} />
                 <button disabled={!isValid}>{!carForUpdate ? 'Save' : 'Update'}</button>
-                {
-                //@ts-ignore
-                errors.brand&&<div>{errors.brand.message}</div>}
-                {
-                //@ts-ignore
-                errors.price&&<div>{errors.price.message}</div>}
-                {
-                //@ts-ignore
-                errors.year&&<div>{errors.year.message}</div>}
+                {errors.brand&&<div>{errors.brand.message}</div>}
+                {errors.price&&<div>{errors.price.message}</div>}
+                {errors.year&&<div>{errors.year.message}</div>}
             </form>
         </div>
     )

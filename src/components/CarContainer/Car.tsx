@@ -1,13 +1,21 @@
-import { carService } from "../../services/carService";
+import { FC } from "react";
 
-//@ts-ignore
-const Car = ({car, setCarForUpdate, changeTrigger}) => {
+import { carService } from "../../services/carService";
+import { ICar } from "../../interfaces/carInterface";
+import { ISetState } from "../../types/setStateType";
+
+interface IProps {
+    car: ICar,
+    setCarForUpdate: ISetState<ICar>,
+    changeTrigger: () => void,
+}
+
+const Car: FC<IProps> = ({car, setCarForUpdate, changeTrigger}) => {
 
     const { id, brand, price, year } = car;
-    //@ts-ignore
+    
     const deleteCar = async () => {
         await carService.deleteById(id);
-        //@ts-ignore
         changeTrigger()
     };
 
