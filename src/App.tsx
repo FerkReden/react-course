@@ -1,11 +1,11 @@
-import './App.css';
+import { A } from "./components/A";
 
 function App() {
-  return (
-    <div className="App">
-      <h1>Hello</h1>
-    </div>
-  );
-}
-
-export default App;
+    return (
+      <div>
+          <A />
+      </div>
+    );
+  }
+  
+  export { App };
